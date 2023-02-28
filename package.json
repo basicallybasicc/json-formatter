@@ -1,5 +1,5 @@
 {
-  "name": "json-pretty",
+  "name": "json-formatter",
   "version": "0.1.0",
   "homepage": "https://redhattt.github.io/json-formatter",
   "private": true,
