@@ -1,38 +1,66 @@
 import React, {Component} from 'react';
 import './App.css';
 import JSONPretty from 'react-json-pretty';
-import { Button } from '@material-tailwind/react';
+import { Button, Tooltip } from '@material-tailwind/react';
+import { FiCornerRightDown } from 'react-icons/fi'
+import Swal from 'sweetalert2'
 
-interface propsInf {}
-interface stateInf {
-  json: string,
-  jsonPretty: string
+interface propsIntf {}
+interface stateIntf {
+  unfJson: string,
+  fJson: string
 }
 
-export default class App extends Component<propsInf, stateInf> {
+export default class App extends Component<propsIntf, stateIntf> {
   constructor (props: any) {
     super (props)
 
     this.state = {
-      json: '{"hello": "world"}',
-      jsonPretty: '{}'
+      unfJson: '{"ping": "pong"}',
+      fJson: '{}'
     }
   }
 
+  _isJson = (str: string): boolean => {
+    try {
+      JSON.parse(str)
+    } catch (e) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Invalid JSON',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      return false
+    }
+    return true
+  }
+
   _transform = (): void => {
-    this.setState({
-      jsonPretty: this.state.json
-    })
+    const { unfJson } = this.state
+    
+    if (this._isJson(unfJson)) {
+      this.setState({
+        fJson: unfJson
+      }, () => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Successfully',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      })
+    }
   }
 
   _handleChange = (e: any): void => {
     this.setState({
-      json: e.target.value
+      unfJson: e.target.value
     })
   }
 
   render () {
-    const {json, jsonPretty} = this.state
+    const {unfJson, fJson} = this.state
     return (
       <>
         <h1 className="text-3xl text-center font-bold pt-8">
@@ -48,7 +76,7 @@ export default class App extends Component<propsInf, stateInf> {
               htmlFor="json" 
               className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
           >
-              JSON
+            UNFORMATTED JSON
           </label>
           <textarea 
               id="message" 
@@ -59,16 +87,34 @@ export default class App extends Component<propsInf, stateInf> {
                 border-gray-300
               "
               placeholder="Write your json here..."
-              value={json}
+              value={unfJson}
               onChange={e => this._handleChange(e)}
           />
           </div>
           <div>
-            <Button onClick={() => this._transform()}>Proccess</Button>
+            {
+              unfJson === ""
+              ?
+              <div></div>
+              :
+              <Tooltip content="Process" placement="top">
+                <Button 
+                  onClick={() => this._transform()}
+                >
+                  <FiCornerRightDown size={20}/>
+                </Button>
+              </Tooltip>
+            }
           </div>
           <div>
+            <label 
+                htmlFor="json" 
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >
+                FORMATTED JSON
+            </label>
             <JSONPretty 
-              data={jsonPretty}
+              data={fJson}
             />
           </div>
         </div>
