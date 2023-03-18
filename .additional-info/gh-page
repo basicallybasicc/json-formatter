@@ -1,0 +1,1 @@
+git remote add $NAME https://$TOKEN:x-oauth-basic@github.com/$USERNAME/$REPO.git

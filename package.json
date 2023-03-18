@@ -1,7 +1,7 @@
 {
   "name": "json-formatter",
   "version": "0.1.0",
-  "homepage": "https://redhattt.github.io/json-formatter",
+  "homepage": "https://basicallybasicc.github.io/json-formatter",
   "private": true,
   "dependencies": {
     "@material-tailwind/react": "^1.4.2",
@@ -15,9 +15,10 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-json-pretty": "^2.2.0",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "typescript": "^4.4.2",
-    "web-vitals": "^2.1.0"
+    "web-vitals": "^2.1.0",
+    "webpack": "^5.76.2"
   },
   "scripts": {
     "predeploy": "npm run build",
