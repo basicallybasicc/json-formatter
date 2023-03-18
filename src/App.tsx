@@ -72,21 +72,19 @@ export default class App extends Component<propsIntf, stateIntf> {
         <div className='grid grid-cols-1 gap-4'>
           <div>
             
-          <label 
-              htmlFor="json" 
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          <label
+              className="block mb-2 text-sm font-medium text-gray-900"
           >
             UNFORMATTED JSON
           </label>
-          <textarea 
-              id="message" 
+          <textarea
               rows={18}
               className="
                 block p-2.5 w-full text-sm
                 text-gray-700 bg-gray-50 rounded-md border
                 border-gray-300
               "
-              placeholder="Write your json here..."
+              placeholder="Write your json here ..."
               value={unfJson}
               onChange={e => this._handleChange(e)}
           />
@@ -108,8 +106,7 @@ export default class App extends Component<propsIntf, stateIntf> {
           </div>
           <div>
             <label 
-                htmlFor="json" 
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                className="block mb-2 text-sm font-medium text-gray-900"
             >
                 FORMATTED JSON
             </label>
